@@ -145,9 +145,9 @@
         @apply pt-[40px]
     }
     .sc-text-headline{
-        @apply text-3xl font-semibold
+        @apply text-xl sm:text-3xl font-semibold
     }
     .sc-text-body{
-        @apply text-[1rem]
+        @apply text-[0.875rem] sm:text-[1rem]
     }
 }

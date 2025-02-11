@@ -54,9 +54,12 @@ export const Carousel = ({
         className="flex w-full overflow-x-scroll overscroll-x-auto pb-6 md:pb-12 scroll-smooth scrollbar-none"
         ref={carouselRef}
         onScroll={checkScrollability}
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }}
       >
-        <div className="absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l">
-        </div>
+        <div className="absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"></div>
 
         <div className="flex flex-row justify-start gap-4 pl-4 max-w-7xl mx-auto">
           {items.map((item, index) => (

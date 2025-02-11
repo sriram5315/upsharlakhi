@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "@/components/Footer";
 import { LinkType } from "@/types/universalTypes";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Home | Universal Public School",
@@ -35,9 +36,8 @@ export default function RootLayout({
             <div>
               {children}
             </div>
-            <div>
             <Footer quickLinks={navFooterquickLinks}/>
-            </div>
+            <ScrollToTop />
           </ThemeProvider>
       </body>
     </html>
