@@ -11,7 +11,7 @@ interface CarouselProps {
   isButtonVisible?: boolean;
 }
 
-export const Carousel = ({ 
+export const SliderCarousel = ({ 
   items, 
   initialScroll = 0, 
 //   shouldCardCoverFullWidth = false, 

@@ -44,7 +44,7 @@ const Footer = ({quickLinks}: {quickLinks: LinkType[]}) => {
     reachOut: ["Landline: +91-1126122723, +91-1126122724", "Mobile: +91-9871600061, 91-9871600062", "Email: school@gdgoenka.com"]
   }
   return (
-    <footer className="px-2 mt-[2.5rem]">
+    <footer className="px-2 mt-[2.5rem] mb-[3rem] md:mb-0">
       <FadeInAnimation>
         <div className="pt-8 md:pt-12 pb-2 mb-1 bg-nav rounded-lg text-gray-800">
           <div className="mb-4 flex flex-col items-start justify-center md:flex-row md:justify-between md:items-start padding-x-section section-width">

@@ -1,9 +1,18 @@
 import { ImagesSliderDemo } from "@/components/HeroSection";
 import { FocusCards } from "@/components/ui/focus-cards";
 import { Section } from "@/components/ui/section";
-import { Carousel } from "@/components/ui/sliderCarousal";
+import { SliderCarousel } from "@/components/ui/sliderCarousal";
 import Image from 'next/image';
 import {GridItem} from '@/components/GridItem'
+import {NoticeCard} from "@/components/NoticeCard"
+import {EnquiryModal} from "@/components/EnquiryModal"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 interface SectionProps{
   heading: string;
@@ -146,38 +155,39 @@ export default function HomePage() {
       {
         title: "Lorem Ipsum  Lorem Hello this is this guy",
         description: "Lorem Ipsum  Lorem Hello this is this guy, Lorem Ipsum  Lorem Hello this is this guy,",
-        src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        href: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        src: 'https://www.svgrepo.com/show/450458/link.svg',
+        href: 'https://www.svgrepo.com/show/450458/link.svg'
+      },
+      {
+        title: "Lorem Ipsum  Lorem Hello",
+        description: "Lorem Ipsum  Lorem Hello this is this guy, Lorem Ipsum  Lorem Hello this is this guy,",
+        src: 'https://www.svgrepo.com/show/450458/link.svg',
+        href: 'https://www.svgrepo.com/show/450458/link.svg'
       },
       {
         title: "Lorem Ipsum  Lorem Hello this is this guy",
         description: "Lorem Ipsum  Lorem Hello this is this guy, Lorem Ipsum  Lorem Hello this is this guy,",
-        src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        href: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        src: 'https://www.svgrepo.com/show/450458/link.svg',
+        href: 'https://www.svgrepo.com/show/450458/link.svg'
       },
       {
         title: "Lorem Ipsum  Lorem Hello this is this guy",
         description: "Lorem Ipsum  Lorem Hello this is this guy, Lorem Ipsum  Lorem Hello this is this guy,",
-        src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        href: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-      },
-      {
-        title: "Lorem Ipsum  Lorem Hello this is this guy",
-        description: "Lorem Ipsum  Lorem Hello this is this guy, Lorem Ipsum  Lorem Hello this is this guy,",
-        src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        href: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        src: 'https://www.svgrepo.com/show/450458/link.svg',
+        href: 'https://www.svgrepo.com/show/450458/link.svg'
       },
     ]
   };
   
   return (
-    <main className="page-top-p">
+    <main className="page-top-p relative">
       <ImagesSliderDemo />
       <SchoolDivisions content={schoolDivisionsContent} />
       <MissionVisionSection content={missionVisionContent} />
       <UpperManMessageSection content={upperManMessageContent} />
       <EcaSection content={ecaContent} />
       <NoticeSection content={noticeContent} />
+      <EnquiryModal />
     </main>
   );
 }
@@ -226,7 +236,7 @@ function SchoolDivisions({ content }: { content: SchoolDivisionsContent }) {
       heading={content.heading}
       subHeading={content.subHeading}
     >
-      <Carousel items={divisions} isButtonVisible={true}/>
+      <SliderCarousel items={divisions} isButtonVisible={true}/>
     </Section>
   );
 }
@@ -310,7 +320,28 @@ function NoticeSection({ content }: { content: NoticeContent }) {
       heading={content.heading}
       subHeading={content.subHeading}
     >
-      <div>Hello</div>
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="w-[80%] md:w-full mx-auto"
+        >
+          <CarouselContent>
+              {content.notices.map((notice, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <NoticeCard
+                    key={index}
+                    title={notice.title}
+                    description={notice.description}
+                    src={notice.src}
+                    href={notice.href}
+                  />
+                </CarouselItem>
+              ))}
+          </CarouselContent>
+          <CarouselPrevious className="bg-primary text-white"/>
+          <CarouselNext className="bg-primary text-white"/>
+        </Carousel>
     </Section>
   );
 }
