@@ -12,12 +12,9 @@ const nextConfig = {
         },
       ],
     },
-    eslint: {
-      ignoreDuringBuilds: true,
-    //   dirs: ['app', 'components', 'lib', 'utils', 'types'] // Add all your source directories
-    },
-    typescript: {
-      // If you want to ignore TypeScript errors during build
-      ignoreBuildErrors: true
-    }
+    // eslint: {
+    //   ignoreDuringBuilds: true,
+    // }
   }
+  
+  export default nextConfig;
