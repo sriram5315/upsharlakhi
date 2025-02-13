@@ -24,25 +24,30 @@ export const ImagesSlider = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null); // Store interval
+  const [isAutoplayActive, setIsAutoplayActive] = useState(autoplay);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
-    resetInterval(); // Reset autoplay on click
+    resetInterval();
   };
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
     );
-    resetInterval(); // Reset autoplay on click
+    resetInterval();
   };
 
   useEffect(() => {
+    setIsAutoplayActive(autoplay);
+  }, [autoplay]);
+
+  useEffect(() => {
     loadImages();
-  }, []);
+  }, [images]);
 
   const loadImages = () => {
     setLoading(true);
@@ -74,20 +79,31 @@ export const ImagesSlider = ({
 
     window.addEventListener("keydown", handleKeyDown);
 
-    if (autoplay) {
-      startAutoplay();
-    }
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      stopAutoplay();
     };
   }, []);
 
+  useEffect(() => {
+    if (isAutoplayActive && loadedImages.length > 0) {
+      startAutoplay();
+    } else {
+      stopAutoplay();
+    }
+
+    return () => {
+      stopAutoplay();
+    };
+  }, [isAutoplayActive, loadedImages]);
+
   const startAutoplay = () => {
-    stopAutoplay(); // Ensure old interval is cleared before starting a new one
+    if (intervalRef.current) {
+      stopAutoplay();
+    }
     intervalRef.current = setInterval(() => {
-      handleNext();
+      setCurrentIndex((prevIndex) =>
+        prevIndex + 1 === images.length ? 0 : prevIndex + 1
+      );
     }, 5000);
   };
 
@@ -99,8 +115,10 @@ export const ImagesSlider = ({
   };
 
   const resetInterval = () => {
-    stopAutoplay(); // Clear previous interval
-    startAutoplay(); // Restart autoplay
+    if (isAutoplayActive) {
+      stopAutoplay();
+      startAutoplay();
+    }
   };
 
   const slideVariants = {
@@ -163,11 +181,11 @@ export const ImagesSlider = ({
             exit={direction === "up" ? "upExit" : "downExit"}
             variants={slideVariants}
             className="image h-full w-full absolute inset-0 object-cover object-center"
+            alt={`Slide ${currentIndex + 1}`}
           />
         </AnimatePresence>
       )}
 
-      {/* Left Arrow Button */}
       <button
         onClick={handlePrevious}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-50 bg-white/10 md:hover:bg-white/30 text-white p-3 rounded-full transition duration-300"
@@ -176,10 +194,9 @@ export const ImagesSlider = ({
         <ChevronLeft className="md:h-8 h-4 md:w-8 w-4 md:hover:scale-[120%] md:hover:ease-out" />
       </button>
 
-      {/* Right Arrow Button */}
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-50 bg-white/10 md:hover:bg-white/30 text-white p-2 md:p-3  rounded-full transition duration-300"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-50 bg-white/10 md:hover:bg-white/30 text-white p-2 md:p-3 rounded-full transition duration-300"
         aria-label="Next Image"
       >
         <ChevronRight className="md:h-8 h-4 md:w-8 w-4 md:hover:scale-[120%] md:hover:ease-out" />
@@ -187,3 +204,5 @@ export const ImagesSlider = ({
     </div>
   );
 };
+
+export default ImagesSlider;
