@@ -280,6 +280,7 @@ function UpperManMessageSection({ content }: { content: UpperManMessageContent }
               <Image
                 src={message.src}
                 alt={message.name}
+                fill
                 className={`w-full h-full object-cover rounded-t-xl ${index === 1 ? ' md:rounded-r-2xl' : 'md:rounded-l-2xl'}`}
               />
             </div>

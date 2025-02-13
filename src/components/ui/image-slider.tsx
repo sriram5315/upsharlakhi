@@ -42,7 +42,7 @@ export const ImagesSlider = ({
 
   useEffect(() => {
     loadImages();
-  });
+  }, []);
 
   const loadImages = () => {
     setLoading(true);
@@ -82,7 +82,7 @@ export const ImagesSlider = ({
       window.removeEventListener("keydown", handleKeyDown);
       stopAutoplay();
     };
-  });
+  }, []);
 
   const startAutoplay = () => {
     stopAutoplay(); // Ensure old interval is cleared before starting a new one
@@ -133,7 +133,7 @@ export const ImagesSlider = ({
       },
     },
   };
-  console.log('image loaded', loading)
+
   const areImagesLoaded = loadedImages.length > 0;
 
   return (
