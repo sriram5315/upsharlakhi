@@ -7,8 +7,6 @@ import {
   ModalFooter,
   ModalTrigger,
 } from "@/components/ui/animated-modal";
-import Image from "next/image";
-import { motion } from "framer-motion";
 
 export function EnquiryModal() {
   return (
@@ -18,7 +16,7 @@ export function EnquiryModal() {
           <span className="md:group-hover/modal-btn:translate-x-40 text-center text-gray-950 transition duration-500">
             Enquire
           </span>
-          <div className="hidden md:block md:-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+          <div className="hidden md:flex md:-translate-x-40 group-hover/modal-btn:translate-x-0 items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
             ✈️
           </div>
         </ModalTrigger>

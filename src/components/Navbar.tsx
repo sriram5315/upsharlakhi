@@ -23,7 +23,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IconLink, LinkType } from "@/types/universalTypes";
+import type { IconLink, LinkType } from "@/types/universalTypes";
 
 const Navbar = ({navItems}: {navItems: LinkType[]}) => {
   const pathname = usePathname();

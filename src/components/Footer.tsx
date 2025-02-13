@@ -1,5 +1,5 @@
 "use client"
-import { IconLink, LinkType } from "@/types/universalTypes";
+import type { IconLink, LinkType } from "@/types/universalTypes";
 import Link from "next/link";
 import Image from "next/image";
 import FadeInAnimation from '@/components/ui/fade-in-animation';

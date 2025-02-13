@@ -277,7 +277,7 @@ function UpperManMessageSection({ content }: { content: UpperManMessageContent }
           >
             {/* Image Section */}
             <div className={`w-full md:w-1/2 relative h-[150px] md:h-[300px] ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-              <img
+              <Image
                 src={message.src}
                 alt={message.name}
                 className={`w-full h-full object-cover rounded-t-xl ${index === 1 ? ' md:rounded-r-2xl' : 'md:rounded-l-2xl'}`}

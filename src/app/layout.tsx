@@ -4,7 +4,7 @@ import { type Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "@/components/Footer";
-import { LinkType } from "@/types/universalTypes";
+import type { LinkType } from "@/types/universalTypes";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
