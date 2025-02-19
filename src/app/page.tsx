@@ -308,7 +308,7 @@ function UpperManMessageSection({ content }: { content: UpperManMessageContent }
   );
 }
 
-export function NoticeSection({ content }: { content: any }) {
+function NoticeSection({ content }: { content: any }) {
   return (
     <Section
       className="text-gray-900 dark:text-white"
