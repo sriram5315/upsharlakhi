@@ -86,18 +86,18 @@ export const SliderCarousel = ({
       {isButtonVisible && (
         <div className="flex justify-end gap-2 mr-4 md:mr-10">
           <button
-            className="relative z-40 h-10 w-10 rounded-full bg-nav flex items-center justify-center disabled:opacity-50"
+            className="relative h-10 w-10 rounded-full bg-nav flex items-center justify-center disabled:opacity-50"
             onClick={scrollLeft}
             disabled={!canScrollLeft}
           >
-            <ChevronLeft className="h-6 w-6 text-white" />
+            <ChevronLeft className="h-6 w-6 text-gray-800" />
           </button>
           <button
-            className="relative z-40 h-10 w-10 rounded-full bg-nav flex items-center justify-center disabled:opacity-50"
+            className="relative h-10 w-10 rounded-full bg-nav flex items-center justify-center disabled:opacity-50"
             onClick={scrollRight}
             disabled={!canScrollRight}
           >
-            <ChevronRight className="h-6 w-6 text-white" />
+            <ChevronRight className="h-6 w-6 text-gray-800" />
           </button>
         </div>
       )}

@@ -6,13 +6,7 @@ import Image from 'next/image';
 import {GridItem} from '@/components/GridItem'
 import {NoticeCard} from "@/components/NoticeCard"
 import {EnquiryModal} from "@/components/EnquiryModal"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import { CarouselComp } from "@/components/CarouselComp";
 
 interface SectionProps{
   heading: string;
@@ -314,35 +308,14 @@ function UpperManMessageSection({ content }: { content: UpperManMessageContent }
   );
 }
 
-function NoticeSection({ content }: { content: NoticeContent }) {
+export function NoticeSection({ content }: { content: any }) {
   return (
     <Section
       className="text-gray-900 dark:text-white"
       heading={content.heading}
       subHeading={content.subHeading}
     >
-        <Carousel
-          opts={{
-            align: "start",
-          }}
-          className="w-[80%] md:w-full mx-auto"
-        >
-          <CarouselContent>
-              {content.notices.map((notice, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <NoticeCard
-                    key={index}
-                    title={notice.title}
-                    description={notice.description}
-                    src={notice.src}
-                    href={notice.href}
-                  />
-                </CarouselItem>
-              ))}
-          </CarouselContent>
-          <CarouselPrevious className="bg-primary text-white"/>
-          <CarouselNext className="bg-primary text-white"/>
-        </Carousel>
+      <CarouselComp content={content} />
     </Section>
   );
 }
