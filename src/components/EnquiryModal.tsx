@@ -59,11 +59,12 @@ const EnquiryForm = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }
         formData.append(key, value);
       });
       const result = await submitEnquiry(null, formData);
-      console.log(result)
+      console.log(result, 'Result-----')
       if (result.success) {
         reset();
         onOpenChange(false);
       } else {
+        console.log("Error Block")
         setSubmitError(result.message || "Failed to submit enquiry");
       }
     } catch (error) {
@@ -193,6 +194,7 @@ const EnquiryForm = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }
           <Button
             type="submit"
             disabled={isSubmitting}
+            className="text-white"
           >
             {isSubmitting ? 'Sending...' : 'Send Enquiry'}
           </Button>
@@ -209,7 +211,7 @@ export function EnquiryModal() {
     <div className="w-full md:w-auto fixed bottom-0 md:bottom-24 md:right-2 flex items-center justify-center">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <div className="z-[99] relative w-full md:w-[100px] bg-nav flex justify-center group/modal-btn p-2 md:rounded-lg cursor-pointer">
+          <div className="z-[99] text-gray-900 relative w-full md:w-[100px] bg-nav flex justify-center group/modal-btn p-2 md:rounded-lg cursor-pointer">
             {/* <span className="md:group-hover/modal-btn:translate-x-40 text-center text-gray-950 transition duration-500">
               Enquire
             </span>
@@ -219,12 +221,8 @@ export function EnquiryModal() {
             Enquire
           </div>
         </DialogTrigger>
-        <DialogContent className="bg-main max-h-[70vh] overflow-y-auto max-w-[320px] md:max-w-[400px]"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none'
-          }}
-        >
+        <DialogContent 
+          className="bg-main max-h-[90vh] overflow-hidden max-w-[320px] md:max-w-[400px]">
           <EnquiryForm onOpenChange={setOpen} />
         </DialogContent>
       </Dialog>

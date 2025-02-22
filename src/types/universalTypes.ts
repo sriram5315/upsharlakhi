@@ -10,3 +10,14 @@ export interface IconLink {
   href: string;
   isExternal?: boolean;
 }
+
+export interface SectionProps{
+  heading: string;
+  subHeading: string;
+}
+
+export interface BasicCard {
+  title: string;
+  src: string;
+  description?: string
+}

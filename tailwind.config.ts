@@ -63,8 +63,11 @@ export default {
 			},
 			main: {
 				DEFAULT: 'hsl(var(--main))'
+			},
+			admission: {
+				DEFAULT: 'hsl(var(--admission))'
 			}
-  		}
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

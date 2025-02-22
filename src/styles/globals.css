@@ -59,6 +59,7 @@
 
         --radius: 0.5rem;
 
+        --admission: 189, 84%, 81%
     }
   .dark {
 
@@ -112,7 +113,9 @@
 
         --nav: 188, 84%, 69%;
 
-        --main: 189, 98%, 7%
+        --main: 189, 98%, 7%;
+
+        --admission: 189, 98%, 11%
     }
 }
 /* primary and accent are same */

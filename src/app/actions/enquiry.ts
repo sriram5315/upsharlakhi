@@ -1,15 +1,19 @@
 'use server';
 
+import { db } from "@/server/db";
+import { enquiry } from "@/server/db/schema";
 import { z } from "zod";
 
 const enquirySchema = z.object({
-  parentName: z.string().min(2, "Parent Name must be at least 2 characters"),
-  studentName: z.string().min(2, "Student Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  mobile: z.string().min(10, "Mobile Number must be at least 10 characters"),
-  village: z.string().min(2, "Village must be at least 2 characters"),
-  class: z.string().min(2, "Class must be at least 2 characters"),
-});
+    parentName: z.string().min(2, "Parent Name must be at least 2 characters"),
+    studentName: z.string().min(2, "Student Name must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    mobile: z.string().min(10, "Mobile Number must be at least 10 characters"),
+    village: z.string().min(2, "Village must be at least 2 characters"),
+    class: z.enum(["Nursery", "KG", "1", "2", "3", "4", "5", "6", "7", "8"], {
+      errorMap: () => ({ message: "Invalid class selection" }),
+    }),
+  });
 
 type EnquiryData = z.infer<typeof enquirySchema>;
 
@@ -37,6 +41,15 @@ export async function submitEnquiry(
     const validatedData = enquirySchema.parse(data);
     console.log('Form submission:', validatedData);
     
+    const insertData = await db.insert(enquiry).values({
+        parentName: validatedData.parentName,
+        studentName: validatedData.studentName,
+        email: validatedData.email,
+        mobile: validatedData.mobile,
+        village: validatedData.village,
+        class: validatedData.class
+    })
+
     // Here you would typically save to database or send email
     return { 
       success: true, 
@@ -53,6 +66,7 @@ export async function submitEnquiry(
         }
       });
 
+      console.log(errorMap, 'ErrorMap----')
       return {
         success: false,
         errors: errorMap,

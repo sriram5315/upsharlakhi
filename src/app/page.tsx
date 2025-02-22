@@ -7,17 +7,7 @@ import {GridItem} from '@/components/GridItem'
 import {NoticeCard} from "@/components/NoticeCard"
 import {EnquiryModal} from "@/components/EnquiryModal"
 import { CarouselComp } from "@/components/CarouselComp";
-
-interface SectionProps{
-  heading: string;
-  subHeading: string;
-}
-
-interface BasicCard {
-  title: string;
-  src: string;
-  description?: string
-}
+import { BasicCard, SectionProps } from "@/types/universalTypes";
 
 interface EcaContent extends SectionProps {
   cards: BasicCard[];
