@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { type Metadata } from "next";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { ApplyForAdmissions } from "@/components/ApplyForAdmissions";
 
 export const metadata: Metadata = {
   title: "Admissions | Universal Public School",
@@ -38,14 +39,21 @@ export default function AdmissionsPage() {
             proximity={64}
             inactiveZone={0.01}
           />
-          <h2 className="text-lg md:text-2xl font-bold">
-            Apply
-            <span className="mx-2 px-2 py-1 rounded-md bg-secondary">
-              NOW!
-            </span>
-            for Admissions
-          </h2> 
-          <div className="h-[500px]"></div>
+          <CardHeader className="text-center">
+            <CardTitle>
+              <div className="text-lg md:text-2xl font-bold">
+                Apply
+                <span className="mx-2 px-2 py-1 rounded-md bg-secondary">
+                  NOW!
+                </span>
+                for Admissions
+              </div> 
+            </CardTitle>
+            <CardDescription>Fresh Year Starting from 9th March, 2025</CardDescription>
+          </CardHeader>
+          <CardContent className="h-[500px]">
+            <ApplyForAdmissions />
+          </CardContent>
       </Card>
     </main>
   );

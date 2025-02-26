@@ -1,3 +1,4 @@
+import ContactUsForm from "@/components/ContactUsForm";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
 export default function ContactUsPage() {
   return (
     <main className="page-top-p padding-x-section section-width mt-[44px]">
-      <div className="h-[700px]">Contact Us</div>
+      {/* <div className="h-[700px]">Contact Us</div> */}
+      <ContactUsForm />
     </main>
   );
 }

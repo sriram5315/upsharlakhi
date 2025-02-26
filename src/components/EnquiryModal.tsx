@@ -2,7 +2,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
   Dialog,
   DialogContent,
@@ -21,19 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { submitEnquiry } from "@/app/actions/enquiry";
-
-const enquirySchema = z.object({
-  parentName: z.string().min(2, "Parent Name must be at least 2 characters"),
-  studentName: z.string().min(2, "Student Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  mobile: z.string().min(10, "Mobile Number must be at least 10 characters"),
-  village: z.string().min(2, "Village must be at least 2 characters"),
-  class: z.enum(["Nursery", "KG", "1", "2", "3", "4", "5", "6", "7", "8"], {
-    errorMap: () => ({ message: "Invalid class selection" }),
-  }),
-});
-
-type EnquiryFormData = z.infer<typeof enquirySchema>;
+import { EnquiryData, enquirySchema } from "@/types/universalTypes";
 
 const EnquiryForm = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }) => {
   const [submitError, setSubmitError] = React.useState<string | null>(null);
@@ -45,11 +32,11 @@ const EnquiryForm = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }
     setValue,
     formState: { errors },
     reset,
-  } = useForm<EnquiryFormData>({
+  } = useForm<EnquiryData>({
     resolver: zodResolver(enquirySchema),
   });
 
-  const onSubmit = async (data: EnquiryFormData) => {
+  const onSubmit = async (data: EnquiryData) => {
     try {
       setIsSubmitting(true);
       setSubmitError(null);
@@ -165,7 +152,7 @@ const EnquiryForm = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }
 
           <div className="w-[95%] mx-auto">
             <Label>Class</Label>
-            <Select onValueChange={(value) => setValue("class", value as EnquiryFormData["class"])}>
+            <Select onValueChange={(value) => setValue("class", value as EnquiryData["class"])}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select Class" />
               </SelectTrigger>
